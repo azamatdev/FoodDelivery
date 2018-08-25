@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_marginStart="4dp"
+    android:layout_marginEnd="4dp"
+    android:layout_height="215dp">
+
+    <android.support.v7.widget.CardView
+        android:id="@+id/category_cardview"
+        android:layout_width="0dp"
+        android:layout_height="192dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="4dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="8dp"
+        app:cardPreventCornerOverlap="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <uz.androidmk.fooddelivery.Utils.Fonts.RobotoBold
+                android:id="@+id/food_price"
+                android:layout_width="72dp"
+                android:layout_height="24dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bc_price_yellow"
+                android:gravity="center"
+                android:text="16.000"
+                android:textColor="@color/activeColorDarkGreen"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,20:5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <ImageView
+                android:id="@+id/food_image"
+                android:layout_width="120dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="4dp"
+                android:src="@drawable/category_food"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_price" />
+
+            <TextView
+                android:id="@+id/food_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginBottom="14sp"
+                android:text="Sandwiches"
+                android:textColor="@color/activeColorDarkGreen"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/food_image" />
+
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.v7.widget.CardView>
+
+
+    <Button
+        android:id="@+id/btn_oook"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:background="@drawable/btn_ok_white"
+        android:gravity="center"
+        android:text="OOOK"
+        android:elevation="4dp"
+        android:textAlignment="center"
+        android:paddingBottom="5dp"
+        android:textColor="@color/activeColorGreen"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/category_cardview"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/category_cardview"
+        app:layout_constraintVertical_bias="0.0" />
+
+</android.support.constraint.ConstraintLayout>

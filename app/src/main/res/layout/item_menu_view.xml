@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="4dp"
+    android:layout_marginBottom="4dp">
+
+    <!--Margin bottom was 30-->
+    <android.support.v7.widget.CardView
+        android:id="@+id/main_cardview"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:cardBackgroundColor="@color/background"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="6dp"
+        app:cardPreventCornerOverlap="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.joooonho.SelectableRoundedImageView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/category_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            app:sriv_left_top_corner_radius="8dip"
+            app:sriv_right_top_corner_radius="8dip"
+            app:sriv_left_bottom_corner_radius="8dip"
+            app:sriv_right_bottom_corner_radius="8dip"
+            android:src="@drawable/sandwiches" />
+
+        <TextView
+            android:id="@+id/category_title"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/bc_menu_title"
+            android:textAlignment="center"
+            android:text="Sandwiches"
+            android:textColor="@color/background"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingTop="2dp"
+            android:paddingBottom="3dp"
+            android:layout_gravity="bottom"
+            />
+    </android.support.v7.widget.CardView>
+
+
+
+
+    <!--<TextView-->
+        <!--android:id="@+id/category_title"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_marginEnd="8dp"-->
+        <!--android:layout_marginStart="8dp"-->
+        <!--android:background="@drawable/ic_title_background"-->
+        <!--android:elevation="6dp"-->
+        <!--android:gravity="center"-->
+        <!--android:padding="5dp"-->
+        <!--android:paddingEnd="15dp"-->
+        <!--android:paddingStart="15dp"-->
+        <!--android:text="Sandwiches"-->
+        <!--android:textColor="@color/activeColorGreen"-->
+        <!--android:textStyle="bold"-->
+        <!--app:layout_constraintBottom_toBottomOf="@+id/main_cardview"-->
+        <!--app:layout_constraintEnd_toEndOf="@+id/main_cardview"-->
+        <!--app:layout_constraintStart_toStartOf="@+id/main_cardview"-->
+        <!--app:layout_constraintTop_toBottomOf="@+id/main_cardview"-->
+        <!--app:layout_constraintVertical_bias="0.0" />-->
+
+
+</android.support.constraint.ConstraintLayout>

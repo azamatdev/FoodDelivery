@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="80dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+
+    >
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/selected_category_image"
+        android:layout_gravity="center"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        app:civ_border_width="2dp"
+        app:civ_border_color="@color/textMainColor"
+        android:scaleType="centerCrop"
+        android:src="@drawable/sandwiches" />
+
+    <TextView
+        android:id="@+id/selected_category_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:textSize="10sp"
+        android:text="CHICKEN MEALS"
+        android:textAllCaps="false"
+        android:textColor="@color/textMainColor"
+        android:textStyle="bold"/>
+
+</LinearLayout>
