@@ -9,6 +9,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import uz.androidmk.fooddelivery.model.Food;
 import uz.androidmk.fooddelivery.model.Menu;
@@ -22,32 +23,37 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
                             implements FoodMvpPresenter<V>{
 
     DatabaseReference mDatabase;
-    ArrayList<Food> foodList;
     ArrayList<Menu> networkMenuList;
+
 
     public FoodPresenter() {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.keepSynced(true);
     }
 
+
     @Override
-    public void requestSpecificFoodList(String menuId) {
-        foodList = new ArrayList<>();
+    public void requestSpecificFoodList(final String menuId) {
         mDatabase.child("Food")
                 .orderByChild("categoryId")
-                .equalTo(menuId).addValueEventListener(new ValueEventListener() {
+                .equalTo(menuId)
+                .addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                Log.d("FoodTag", "onDataChange: " + dataSnapshot.getChildrenCount());
+//                Log.d("FoodTag", "onDataChange: " + dataSnapshot.getChildrenCount());
+                ArrayList<Food> foodList = new ArrayList<>();
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
-                    Log.d("FoodTag", "onDataChange: "  + ds.getChildren());
+                    Log.d("FoodTag", "onDataChange: "  + ds.getKey() + "\n" + ds.getValue() + "\n" +  ds.getValue().toString());
                     Food food = new Food();
+//                    food.setCategoryId(ds.child("categoryId").getValue().toString());
+                    food.setKey(ds.getKey());
                     food.setPrice(ds.child("price").getValue().toString());
                     food.setTitle(ds.child("title").getValue().toString());
                     food.setThumbnail(ds.child("thumbnail").getValue().toString());
                     foodList.add(food);
+//                    allFoodList.put(ds.child("categoryId").getValue().toString(),foodList);
                 }
-                getMvpView().onFoodListReady(foodList);
+                getMvpView().onFoodListReady(foodList, menuId);
             }
 
             @Override
@@ -56,6 +62,8 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
             }
         });
     }
+
+
 
     @Override
     public void requestMenuList() {
@@ -88,4 +96,5 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
             }
         });
     }
+
 }

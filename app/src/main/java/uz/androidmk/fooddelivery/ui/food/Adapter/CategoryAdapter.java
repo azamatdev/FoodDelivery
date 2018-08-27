@@ -1,6 +1,5 @@
 package uz.androidmk.fooddelivery.ui.food.Adapter;
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -20,37 +19,39 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
 import uz.androidmk.fooddelivery.model.Food;
 import uz.androidmk.fooddelivery.model.Menu;
-import uz.androidmk.fooddelivery.ui.food.FoodActivity;
 import uz.androidmk.fooddelivery.ui.food.FoodMvpView;
 
 /**
  * Created by Azamat on 8/6/2018.
  */
 
-public class MenuSelectedAdapter extends RecyclerView.Adapter<MenuSelectedAdapter.ViewHolder> {
+public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.ViewHolder> {
 
-    private String TAG = "MenuSelectedAdapter";
+    private String TAG = "CategoryAdapter";
 
     ArrayList<Menu> mMenuList;
 
     FoodMvpView callBack;
 
-    public MenuSelectedAdapter(ArrayList<Menu> list) {
+    FoodSelectListener foodSelectListener;
+
+    public CategoryAdapter(ArrayList<Menu> list) {
         mMenuList = list;
     }
 
+    public void setFoodSelectListener(FoodSelectListener foodSelectListener) {
+        this.foodSelectListener = foodSelectListener;
+    }
+
     public void setCallBack(FoodMvpView callBack) {
-        Log.d(TAG, "setCallBack: ");
         this.callBack = callBack;
     }
 
     public void addItems(ArrayList<Menu> list) {
-        Log.d(TAG, "addItems: ");
         if (mMenuList.isEmpty())
             mMenuList.clear();
         mMenuList.addAll(list);
@@ -59,15 +60,13 @@ public class MenuSelectedAdapter extends RecyclerView.Adapter<MenuSelectedAdapte
 
     @NonNull
     @Override
-    public MenuSelectedAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder: ");
+    public CategoryAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_circle_food, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull final MenuSelectedAdapter.ViewHolder holder, final int position) {
-        Log.d(TAG, "onBindViewHolder: ");
+    public void onBindViewHolder(@NonNull final CategoryAdapter.ViewHolder holder, final int position) {
         holder.category_title.setText(mMenuList.get(position).getMenuTitle());
 
         Glide.with(holder.itemView.getContext()).asBitmap().load(mMenuList.get(position).getMenuThumbnail()).into(holder.category_image);
@@ -77,32 +76,33 @@ public class MenuSelectedAdapter extends RecyclerView.Adapter<MenuSelectedAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DatabaseReference newList = FirebaseDatabase.getInstance().getReference();
-                newList.child("Food")
-                        .orderByChild("categoryId")
-                        .equalTo(mMenuList.get(position).getMenuId()).addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        Log.d(TAG, "onDataChange: ");
-                        ArrayList<Food> newFoodList = new ArrayList<>();
-                        Log.d("FoodTag", "onDataChange: " + dataSnapshot.getChildrenCount());
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                            Log.d("FoodTag", "onDataChange: " + ds.getChildren());
-                            Food food = new Food();
-                            food.setPrice(ds.child("price").getValue().toString());
-                            food.setTitle(ds.child("title").getValue().toString());
-                            food.setThumbnail(ds.child("thumbnail").getValue().toString());
-                            newFoodList.add(food);
-                        }
-                        callBack.onFoodListReady(newFoodList);
-//                                getMvpView().onFoodListReady(foodList);
-                    }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        Log.d("FoodTag", "onCancelled: " + databaseError.getDetails());
-                    }
-                });
+                foodSelectListener.onCategorySelected(position + 1);
+//                DatabaseReference newList = FirebaseDatabase.getInstance().getReference();
+//                newList.child("Food")
+//                        .orderByChild("categoryId")
+//                        .equalTo(mMenuList.get(position).getMenuId()).addValueEventListener(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(DataSnapshot dataSnapshot) {
+//                        Log.d(TAG, "onDataChange: ");
+//                        ArrayList<Food> newFoodList = new ArrayList<>();
+//                        Log.d("FoodTag", "onDataChange: " + dataSnapshot.getChildrenCount());
+//                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                            Log.d("FoodTag", "onDataChange: " + ds.getChildren());
+//                            Food food = new Food();
+//                            food.setPrice(ds.child("price").getValue().toString());
+//                            food.setTitle(ds.child("title").getValue().toString());
+//                            food.setThumbnail(ds.child("thumbnail").getValue().toString());
+//                            newFoodList.add(food);
+//                        }
+//                        foodSelectListener.onCategorySelected(newFoodList);
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(DatabaseError databaseError) {
+//                        Log.d("FoodTag", "onCancelled: " + databaseError.getDetails());
+//                    }
+//                });
 //                Intent food = new Intent(holder.itemView.getContext(), FoodActivity.class);
 //                food.putExtra("menuId",mMenuList.get(position).getMenuId());
 //                holder.itemView.getContext().startActivity(food);
@@ -113,7 +113,6 @@ public class MenuSelectedAdapter extends RecyclerView.Adapter<MenuSelectedAdapte
 
     @Override
     public int getItemCount() {
-        Log.d(TAG, "getItemCount: ");
         if (mMenuList != null) {
             return mMenuList.size();
         } else

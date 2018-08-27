@@ -6,10 +6,14 @@ package uz.androidmk.fooddelivery.model;
 
 public class Food {
 
+    String title;
+    String thumbnail;
+    String categoryId;
+    String price;
+
     public Food() {
 
     }
-
 
     public String getTitle() {
         return title;
@@ -45,10 +49,15 @@ public class Food {
         this.price = price;
     }
 
-    String title;
-    String thumbnail;
-    String categoryId;
-    String price;
 
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
+    String key;
 
 }

@@ -1,21 +1,17 @@
 package uz.androidmk.fooddelivery.ui.food;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
-import android.view.animation.AccelerateInterpolator;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,11 +19,11 @@ import uz.androidmk.fooddelivery.R;
 import uz.androidmk.fooddelivery.model.Food;
 import uz.androidmk.fooddelivery.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BaseActivity;
+import uz.androidmk.fooddelivery.ui.food.Adapter.CategoryAdapter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.FoodAdapter;
-import uz.androidmk.fooddelivery.ui.food.Adapter.MenuSelectedAdapter;
-import uz.androidmk.fooddelivery.ui.menu.adapter.MenuAdapter;
+import uz.androidmk.fooddelivery.ui.food.Adapter.FoodSelectListener;
 
-public class FoodActivity extends BaseActivity implements FoodMvpView {
+public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelectListener {
 
     @BindView(R.id.food_recyler_view)
     RecyclerView foodRecyclerView;
@@ -43,14 +39,19 @@ public class FoodActivity extends BaseActivity implements FoodMvpView {
 
     FoodAdapter foodAdapter;
 
-    MenuSelectedAdapter menuAdapter;
+    CategoryAdapter menuAdapter;
 
     FoodMvpPresenter<FoodMvpView> presenter;
 
     ArrayList<Food> listOfFoods;
 
     ArrayList<Menu> menuList;
+
     String menuId;
+
+    HashMap<String, ArrayList<Food>> selectedFoods;
+
+    int selectedPage;
 
     boolean isVisible;
     @Override
@@ -59,22 +60,29 @@ public class FoodActivity extends BaseActivity implements FoodMvpView {
         setContentView(R.layout.activity_food);
 
         presenter = new FoodPresenter<>();
+        selectedFoods = new HashMap<>();
         setUnbinder(ButterKnife.bind(this));
-
         presenter.onAttach(this);
 
         menuId = getIntent().getStringExtra("menuId");
 
+        selectedPage = Integer.parseInt(menuId);
+
+        //food list
         listOfFoods = new ArrayList<>();
         foodAdapter = new FoodAdapter(listOfFoods);
+        foodAdapter.setFoodSelectListener(this);
 
         foodRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
         foodRecyclerView.setHasFixedSize(true);
         foodRecyclerView.setAdapter(foodAdapter);
 
+        // bottom menu list
         menuList = new ArrayList<>();
-        menuAdapter = new MenuSelectedAdapter(menuList);
+        menuAdapter = new CategoryAdapter(menuList);
+        menuAdapter.setFoodSelectListener(this);
         menuAdapter.setCallBack(this);
+
         foodSelectRecycle.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         foodSelectRecycle.setHasFixedSize(true);
         foodSelectRecycle.setAdapter(menuAdapter);
@@ -82,7 +90,7 @@ public class FoodActivity extends BaseActivity implements FoodMvpView {
         presenter.requestSpecificFoodList(menuId);
         presenter.requestMenuList();
 
-        // slide-up animation
+        // slide-up animation for bottom category selection
         final Animation slideUp = AnimationUtils.loadAnimation(this, R.anim.slide_up);
 
         isVisible = true;
@@ -110,37 +118,47 @@ public class FoodActivity extends BaseActivity implements FoodMvpView {
     protected void setUpUi() {
     }
 
-
-    public ArrayList<Food> getListOfFoods() {
-
-//        String [] names = {"Classic",
-//        "Loook", "Bigger", "Chicken longer", "Hamburger", "CheeseBurger", "Double cheese",
-//        "Chili longer", "Snack wrap"};
-//
-//        String [] prices = {"8600", "9900", "11900", "9900", "11100", "12900", "20700", "10800", "7900"};
-//
-//        for (int i = 0; i < names.length ; i++) {
-//            Food food = new Food();
-//            food.setFood_name(names[i]);
-//            food.setPrice(prices[i]);
-//            food.setImage(R.drawable.category_food);
-//            listOfFoods.add(food);
-//        }
-
-        return listOfFoods;
-    }
-
     public void backPressed(View view) {
         finish();
     }
 
+    //from mvpView
     @Override
-    public void onFoodListReady(ArrayList<Food> foods) {
-        foodAdapter.addItems(foods);
+    public void onFoodListReady(ArrayList<Food> foods, String menuId) {
+//        this.listOfFoods = foods;
+        selectedFoods.put(menuId, foods);
+        foodAdapter.addItems(selectedFoods.get(menuId));
     }
 
     @Override
     public void onMenuListReady(ArrayList<Menu> list) {
+        this.menuList = list;
         menuAdapter.addItems(list);
     }
+
+    @Override
+    public void onFoodList() {
+        foodAdapter.addItems(selectedFoods.get(menuId));
+    }
+
+    //From food select listener
+    @Override
+    public void onFoodSelected(int position) {
+//        selectedFoods.put(listOfFoods.get(position).getCategoryId(), listOfFoods);
+    }
+
+    @Override
+    public void onCategorySelected(int position) {
+        if(selectedFoods.containsKey(Integer.toString(position))) {
+            Log.d("ConditionC", "adapter");
+            foodAdapter.addItems(selectedFoods.get(Integer.toString(position)));
+        }else {
+            Log.d("ConditionC", "presenter");
+            presenter.requestSpecificFoodList(Integer.toString(position));
+        }
+    }
+
+
+
+
 }
