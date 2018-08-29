@@ -12,6 +12,8 @@ import android.view.WindowManager;
 
 import com.google.firebase.database.FirebaseDatabase;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
@@ -28,6 +30,7 @@ public class MainActivity extends BaseActivity implements MainMvpView {
     @BindView(R.id.bottomNavigationView)
     BottomNavigationView bottomNavigationView;
 
+    @Inject
     MainMvpPresenter<MainMvpView> presenter;
 
     FragmentTransaction fragmentTransaction;
@@ -39,11 +42,10 @@ public class MainActivity extends BaseActivity implements MainMvpView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getActivityComponent().inject(this);
         setUnbinder(ButterKnife.bind(this));
-        presenter = new MainPresenter<>();
+//        presenter = new MainPresenter<>();
         presenter.onAttach(this); // this means we now attach the presenter with main activity
-
-
 
         setUpUi();
 

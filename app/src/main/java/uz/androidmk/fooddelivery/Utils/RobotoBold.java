@@ -1,4 +1,4 @@
-package uz.androidmk.fooddelivery.Utils.Fonts;
+package uz.androidmk.fooddelivery.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

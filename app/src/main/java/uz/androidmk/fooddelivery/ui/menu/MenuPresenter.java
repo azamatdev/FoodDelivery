@@ -11,8 +11,10 @@ import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
 
-import uz.androidmk.fooddelivery.model.Banner;
-import uz.androidmk.fooddelivery.model.Menu;
+import javax.inject.Inject;
+
+import uz.androidmk.fooddelivery.data.model.Banner;
+import uz.androidmk.fooddelivery.data.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BasePresenter;
 
 /**
@@ -29,11 +31,15 @@ public class MenuPresenter<V extends MenuMvpView> extends BasePresenter<V>
     DatabaseReference connectedRef;
     private StorageReference mStorageRef;
 
+    @Inject
     public MenuPresenter(){
-//        connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
+
+    }
+
+    public void setInstanceFirebase(){
+        //        connectedRef = FirebaseDatabase.getInstance().getReference(".info/connected");
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.keepSynced(true);
-
     }
 
     @Override

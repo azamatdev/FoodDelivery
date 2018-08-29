@@ -9,10 +9,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-import uz.androidmk.fooddelivery.model.Food;
-import uz.androidmk.fooddelivery.model.Menu;
+import javax.inject.Inject;
+
+import uz.androidmk.fooddelivery.data.model.Food;
+import uz.androidmk.fooddelivery.data.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BasePresenter;
 
 /**
@@ -25,12 +26,15 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
     DatabaseReference mDatabase;
     ArrayList<Menu> networkMenuList;
 
-
+    @Inject
     public FoodPresenter() {
+
+    }
+
+    public void setInstanceFirebase(){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.keepSynced(true);
     }
-
 
     @Override
     public void requestSpecificFoodList(final String menuId) {

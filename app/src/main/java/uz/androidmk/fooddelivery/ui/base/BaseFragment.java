@@ -9,6 +9,7 @@ import android.view.View;
 
 import butterknife.Unbinder;
 import uz.androidmk.fooddelivery.Utils.CommonUtils;
+import uz.androidmk.fooddelivery.di.component.ActivityComponent;
 
 /**
  * Created by Azamat on 8/15/2018.
@@ -52,6 +53,12 @@ public abstract class BaseFragment extends Fragment implements MvpView {
         this.mUnbinder = unbinder;
     }
 
+    public ActivityComponent getActivityComponent(){
+        if(mActivity != null){
+            return mActivity.getActivityComponent();
+        }
+        return null;
+    }
     @Override
     public void onDestroy() {
         if(mUnbinder != null)

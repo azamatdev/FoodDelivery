@@ -4,13 +4,17 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.ProgressBar;
 
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import dagger.internal.DaggerCollections;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import uz.androidmk.fooddelivery.MvpApp;
 import uz.androidmk.fooddelivery.Utils.CommonUtils;
+import uz.androidmk.fooddelivery.di.component.ActivityComponent;
+import uz.androidmk.fooddelivery.di.component.DaggerActivityComponent;
+import uz.androidmk.fooddelivery.di.module.ActivityModule;
 
 /**
  * Created by Azamat on 8/8/2018.
@@ -22,9 +26,23 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     private Unbinder mUnbinder;
 
     private ProgressDialog progressDialog;
+
+    private ActivityComponent mActivity;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mActivity = DaggerActivityComponent
+                        .builder()
+                        .activityModule(new ActivityModule(this))
+                        .applicationComponent(((MvpApp)getApplication()).getComponent())
+                        .build();
+
+    }
+
+    public ActivityComponent getActivityComponent() {
+        return mActivity;
     }
 
     public void setUnbinder(Unbinder unbinder){
@@ -39,8 +57,9 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     }
 
     protected abstract void setUpUi(); // this method is universal for all activity classes
-    //for calligraphy font class
 
+
+    //for calligraphy font class
     @Override
     protected void attachBaseContext(Context newBase) {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));

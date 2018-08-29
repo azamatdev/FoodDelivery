@@ -115,7 +115,7 @@
                 android:layout_weight="0.5"
                 android:src="@drawable/ic_arrow_down" />
 
-            <uz.androidmk.fooddelivery.Utils.Fonts.RobotoBold
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_marginBottom="2dp"
@@ -136,13 +136,14 @@
                 android:overScrollMode="never" />
 
             <Button
-
+                android:id="@+id/food_add_to_cart"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_margin="6dp"
                 android:layout_weight="2"
+                android:onClick="onAddToCart"
                 android:background="@drawable/bc_btn_add_to_cart"
-                android:text="Add to card"
+                android:text="Add to cart"
                 android:textStyle="bold" />
         </LinearLayout>
 

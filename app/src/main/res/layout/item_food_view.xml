@@ -25,7 +25,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <uz.androidmk.fooddelivery.Utils.Fonts.RobotoBold
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
                 android:id="@+id/food_price"
                 android:layout_width="72dp"
                 android:layout_height="24dp"

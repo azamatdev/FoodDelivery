@@ -29,6 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+
             app:sriv_left_top_corner_radius="8dip"
             app:sriv_right_top_corner_radius="8dip"
             app:sriv_left_bottom_corner_radius="8dip"
@@ -39,7 +40,7 @@
             android:id="@+id/category_title"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:background="@drawable/bc_menu_title"
+            android:background="@drawable/bc_menu_title2"
             android:textAlignment="center"
             android:text="Sandwiches"
             android:textColor="@color/background"

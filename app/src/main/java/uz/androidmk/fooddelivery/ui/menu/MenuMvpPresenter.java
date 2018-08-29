@@ -11,4 +11,6 @@ public interface MenuMvpPresenter<V extends MenuMvpView> extends MvpPresenter<V>
     void requestMenuList();
 
     void requestBannerList();
+
+    void setInstanceFirebase();
 }

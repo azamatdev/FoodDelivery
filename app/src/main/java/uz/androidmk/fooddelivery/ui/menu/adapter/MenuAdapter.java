@@ -16,7 +16,7 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.model.Menu;
+import uz.androidmk.fooddelivery.data.model.Menu;
 import uz.androidmk.fooddelivery.ui.food.FoodActivity;
 
 /**

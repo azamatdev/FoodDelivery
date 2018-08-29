@@ -1,5 +1,6 @@
 package uz.androidmk.fooddelivery.ui.food;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -8,17 +9,21 @@ import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.model.Food;
-import uz.androidmk.fooddelivery.model.Menu;
+import uz.androidmk.fooddelivery.data.model.Food;
+import uz.androidmk.fooddelivery.data.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BaseActivity;
+import uz.androidmk.fooddelivery.ui.checkout.CheckoutActivity;
 import uz.androidmk.fooddelivery.ui.food.Adapter.CategoryAdapter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.FoodAdapter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.FoodSelectListener;
@@ -37,10 +42,16 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
     @BindView(R.id.btn_bottom_sheet_expanded)
     ImageView btn_expand_collapse;
 
+    @BindView(R.id.food_add_to_cart)
+    Button addToCart;
+
+    @Inject
     FoodAdapter foodAdapter;
 
+    @Inject
     CategoryAdapter menuAdapter;
 
+    @Inject
     FoodMvpPresenter<FoodMvpView> presenter;
 
     ArrayList<Food> listOfFoods;
@@ -59,18 +70,20 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_food);
 
-        presenter = new FoodPresenter<>();
+        getActivityComponent().inject(this);
+//        presenter = new FoodPresenter<>();
         selectedFoods = new HashMap<>();
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
+        presenter.setInstanceFirebase();
 
         menuId = getIntent().getStringExtra("menuId");
 
         selectedPage = Integer.parseInt(menuId);
 
         //food list
-        listOfFoods = new ArrayList<>();
-        foodAdapter = new FoodAdapter(listOfFoods);
+//        listOfFoods = new ArrayList<>();
+//        foodAdapter = new FoodAdapter(listOfFoods);
         foodAdapter.setFoodSelectListener(this);
 
         foodRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
@@ -78,8 +91,8 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
         foodRecyclerView.setAdapter(foodAdapter);
 
         // bottom menu list
-        menuList = new ArrayList<>();
-        menuAdapter = new CategoryAdapter(menuList);
+//        menuList = new ArrayList<>();
+//        menuAdapter = new CategoryAdapter(menuList);
         menuAdapter.setFoodSelectListener(this);
         menuAdapter.setCallBack(this);
 
@@ -156,6 +169,11 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
             Log.d("ConditionC", "presenter");
             presenter.requestSpecificFoodList(Integer.toString(position));
         }
+    }
+
+    public void onAddToCart(View view){
+        Intent checkout = new Intent(FoodActivity.this, CheckoutActivity.class);
+        startActivity(checkout);
     }
 
 

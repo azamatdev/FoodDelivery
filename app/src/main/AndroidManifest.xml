@@ -19,7 +19,6 @@
         </activity>
         <activity android:name=".ui.food.FoodActivity" />
         <activity android:name=".ui.checkout.CheckoutActivity" />
-        <activity android:name=".ui.foodSelection.FoodSelectActivity"></activity>
     </application>
 
 </manifest>

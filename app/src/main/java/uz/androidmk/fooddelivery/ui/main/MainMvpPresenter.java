@@ -1,8 +1,5 @@
 package uz.androidmk.fooddelivery.ui.main;
 
-import java.util.List;
-
-import uz.androidmk.fooddelivery.model.Banner;
 import uz.androidmk.fooddelivery.ui.base.MvpPresenter;
 
 /**

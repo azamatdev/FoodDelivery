@@ -1,5 +1,7 @@
 package uz.androidmk.fooddelivery.ui.base;
 
+import javax.inject.Inject;
+
 /**
  * Created by Azamat on 8/8/2018.
  */
@@ -8,6 +10,11 @@ package uz.androidmk.fooddelivery.ui.base;
 public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private V mMvpView;
+
+    @Inject
+    public BasePresenter(){
+
+    }
 
     @Override
     public void onAttach(V mvpView) {

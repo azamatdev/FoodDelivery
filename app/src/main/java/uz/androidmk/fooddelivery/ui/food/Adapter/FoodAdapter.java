@@ -3,7 +3,6 @@ package uz.androidmk.fooddelivery.ui.food.Adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,8 +20,7 @@ import java.util.ArrayList;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.model.Food;
-import uz.androidmk.fooddelivery.ui.base.BaseViewHolder;
+import uz.androidmk.fooddelivery.data.model.Food;
 
 /**
  * Created by Azamat on 8/10/2018.

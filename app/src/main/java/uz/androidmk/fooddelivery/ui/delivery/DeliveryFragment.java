@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
+import uz.androidmk.fooddelivery.di.component.ActivityComponent;
 import uz.androidmk.fooddelivery.ui.base.BaseFragment;
 import uz.androidmk.fooddelivery.ui.favourite.FavouriteFragment;
 
@@ -33,7 +35,13 @@ public class DeliveryFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_delivery, container, false);
+        View view = inflater.inflate(R.layout.fragment_delivery, container, false);
+        ActivityComponent activityComponent = getActivityComponent();
+        if (activityComponent != null) {
+            activityComponent.inject(this);
+            setUnbinder(ButterKnife.bind(this, view));
+        }
+        return view;
     }
 
     @Override

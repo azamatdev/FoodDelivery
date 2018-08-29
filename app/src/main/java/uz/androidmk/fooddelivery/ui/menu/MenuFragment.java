@@ -12,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -21,12 +20,15 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
 import uz.androidmk.fooddelivery.Utils.ParallaxPageTransformer;
-import uz.androidmk.fooddelivery.model.Banner;
-import uz.androidmk.fooddelivery.model.Menu;
+import uz.androidmk.fooddelivery.data.model.Banner;
+import uz.androidmk.fooddelivery.data.model.Menu;
+import uz.androidmk.fooddelivery.di.component.ActivityComponent;
 import uz.androidmk.fooddelivery.ui.base.BaseFragment;
 import uz.androidmk.fooddelivery.ui.menu.adapter.HomeBannerAdapter;
 import uz.androidmk.fooddelivery.ui.menu.adapter.MenuAdapter;
@@ -45,12 +47,15 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
     @BindView(R.id.indicator)
     CirclePageIndicator circlePageIndicator;
 
+    @Inject
     MenuAdapter adapter;
 
     ArrayList<Menu> menuList;
 
+    @Inject
     HomeBannerAdapter bannerAdapter;
 
+    @Inject
     MenuMvpPresenter<MenuMvpView> presenter;
 
     //For Banner auto flipping
@@ -77,9 +82,15 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        setUnbinder(ButterKnife.bind(this, view));
-        presenter = new MenuPresenter<>();
-        presenter.onAttach(this);
+
+        ActivityComponent activityComponent = getActivityComponent();
+        if (activityComponent != null) {
+            activityComponent.inject(this);
+            setUnbinder(ButterKnife.bind(this, view));
+//            presenter = new MenuPresenter<>();
+            presenter.onAttach(this);
+            presenter.setInstanceFirebase(); // temporary method
+        }
 
         return view;
     }
@@ -91,8 +102,8 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
 
 //        recyclerView = view.findViewById(R.id.main_recycler_view);
         viewPager = view.findViewById(R.id.viewPagerHomeBanner);
-        menuList = new ArrayList<>();
-        adapter = new MenuAdapter(menuList);
+//        menuList = new ArrayList<>();
+//        adapter = new MenuAdapter(menuList);
 
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
@@ -113,7 +124,9 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
 
     @Override
     public void onBannerListReady(final List<Banner> banners) {
-        bannerAdapter = new HomeBannerAdapter(getActivity(), banners, 0);
+//        bannerAdapter = new HomeBannerAdapter(getActivity());
+        bannerAdapter.setListAndType(banners, 0);
+
         viewPager.setPageTransformer(false, new ParallaxPageTransformer());
         viewPager.setAdapter(bannerAdapter);
 
@@ -142,8 +155,6 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
         circlePageIndicator.setViewPager(viewPager);
 
 
-
-
     }
 
 
@@ -164,7 +175,7 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
             handler = null;
         if (update != null)
             update = null;
-        if(isTimerRunning){
+        if (isTimerRunning) {
             timer.cancel();
 //            timer.purge();
             timer = null;

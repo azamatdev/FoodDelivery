@@ -81,6 +81,16 @@ dependencies {
 
     //circular image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //for elegant number
+    compile 'com.cepheuen.elegant-number-button:lib:1.0.2'
+
+    //dependency injection
+    implementation "com.google.dagger:dagger:$project.dagger2Version"
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.dagger2Version"
+    compileOnly 'javax.annotation:jsr250-api:1.0'
+    implementation 'javax.inject:javax.inject:1'
+
 }
 
 

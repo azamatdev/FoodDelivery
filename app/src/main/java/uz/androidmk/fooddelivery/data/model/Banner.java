@@ -1,4 +1,4 @@
-package uz.androidmk.fooddelivery.model;
+package uz.androidmk.fooddelivery.data.model;
 
 /**
  * Created by Azamat on 8/9/2018.

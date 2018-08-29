@@ -8,15 +8,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.model.Banner;
+import uz.androidmk.fooddelivery.data.model.Banner;
+import uz.androidmk.fooddelivery.di.ActivityContext;
 
 /**
  * Created by Azamat on 8/7/2018.
@@ -28,8 +29,10 @@ public class HomeBannerAdapter extends PagerAdapter{
     private List<Banner> banners;
     private int viewType;
 
-    public HomeBannerAdapter(Context mContext, List<Banner> banners, int viewType) {
-        this.mContext = mContext;
+    public HomeBannerAdapter(Context context){
+        mContext = context;
+    }
+    public void setListAndType(List<Banner> banners, int viewType) {
         this.banners = banners;
         this.viewType = viewType;
     }
