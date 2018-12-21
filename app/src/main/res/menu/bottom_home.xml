@@ -4,21 +4,21 @@
 
     <item
         android:id="@+id/action_favourite"
-        android:title="Favourite"
+        android:title="@string/favourite"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_favorite_border_black_24dp"/>
 
     <item
         android:id="@+id/action_menu"
-        android:title="Menu"
+        android:title="@string/menu"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_fast_food_menu"/>
 
     <item
         android:id="@+id/action_delivery"
-        android:title="Delivery"
+        android:title="@string/delivery"
         app:showAsAction="ifRoom"
         android:enabled="true"
         android:icon="@drawable/ic_delivery"/>

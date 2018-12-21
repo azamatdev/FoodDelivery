@@ -2,8 +2,8 @@ package uz.androidmk.fooddelivery.ui.food;
 
 import java.util.ArrayList;
 
-import uz.androidmk.fooddelivery.data.model.Food;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import uz.androidmk.fooddelivery.data.db.model.Food;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.MvpView;
 
 /**

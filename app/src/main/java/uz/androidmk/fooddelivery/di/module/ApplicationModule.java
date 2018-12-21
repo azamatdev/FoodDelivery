@@ -8,8 +8,13 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import uz.androidmk.fooddelivery.R;
+import uz.androidmk.fooddelivery.data.AppDataManager;
+import uz.androidmk.fooddelivery.data.DataManager;
+import uz.androidmk.fooddelivery.data.db.AppDbHelper;
+import uz.androidmk.fooddelivery.data.db.DbHelper;
+import uz.androidmk.fooddelivery.data.prefs.AppPreferencesHelper;
+import uz.androidmk.fooddelivery.data.prefs.PreferencesHelper;
 import uz.androidmk.fooddelivery.di.ApplicationContext;
 
 /**
@@ -38,9 +43,27 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
+    DataManager provideDataManager(AppDataManager dataManager){
+        return dataManager;
+    }
+
+    @Provides
+    @Singleton
+    DbHelper provideDbHelper(AppDbHelper dbHelper){
+        return dbHelper;
+    }
+
+    @Provides
+    @Singleton
+    PreferencesHelper providePrefHelper(AppPreferencesHelper preferencesHelper){
+        return preferencesHelper;
+    }
+
+    @Provides
+    @Singleton
     CalligraphyConfig provideCalligraphyDefaultConfig(){
         return new CalligraphyConfig.Builder()
-                .setDefaultFontPath("Roboto-Medium.ttf")
+                .setDefaultFontPath("blogger_sans_medium.ttf")
                 .setFontAttrId(R.attr.fontPath)
                 .build();
     }

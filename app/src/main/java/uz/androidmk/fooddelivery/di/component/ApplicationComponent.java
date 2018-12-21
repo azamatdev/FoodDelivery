@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 import uz.androidmk.fooddelivery.MvpApp;
+import uz.androidmk.fooddelivery.data.DataManager;
 import uz.androidmk.fooddelivery.di.ApplicationContext;
 import uz.androidmk.fooddelivery.di.module.ApplicationModule;
 
@@ -25,4 +26,5 @@ public interface ApplicationComponent {
 
     Application application();
 
+    DataManager getDataManager();
 }

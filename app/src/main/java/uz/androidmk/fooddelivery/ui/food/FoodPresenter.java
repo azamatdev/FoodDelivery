@@ -12,8 +12,10 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import uz.androidmk.fooddelivery.data.model.Food;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import io.reactivex.disposables.CompositeDisposable;
+import uz.androidmk.fooddelivery.data.DataManager;
+import uz.androidmk.fooddelivery.data.db.model.Food;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BasePresenter;
 
 /**
@@ -27,8 +29,8 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
     ArrayList<Menu> networkMenuList;
 
     @Inject
-    public FoodPresenter() {
-
+    public FoodPresenter(DataManager  dataManager, CompositeDisposable compositeDisposable) {
+        super(dataManager, compositeDisposable);
     }
 
     public void setInstanceFirebase(){
@@ -49,7 +51,7 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
                 for (DataSnapshot ds: dataSnapshot.getChildren()) {
                     Log.d("FoodTag", "onDataChange: "  + ds.getKey() + "\n" + ds.getValue() + "\n" +  ds.getValue().toString());
                     Food food = new Food();
-//                    food.setCategoryId(ds.child("categoryId").getValue().toString());
+                    food.setCategoryId(ds.child("categoryId").getValue().toString());
                     food.setKey(ds.getKey());
                     food.setPrice(ds.child("price").getValue().toString());
                     food.setTitle(ds.child("title").getValue().toString());
@@ -66,7 +68,6 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
             }
         });
     }
-
 
 
     @Override
@@ -100,5 +101,16 @@ public class FoodPresenter<V extends FoodMvpView> extends BasePresenter<V>
             }
         });
     }
+
+    @Override
+    public void addSelectedFood(Food food) {
+        getDataManager().addFoodToSelectedList(food);
+    }
+
+    @Override
+    public void removeSelectedFood(String key) {
+        getDataManager().removeFoodSelectedList(key);
+    }
+
 
 }

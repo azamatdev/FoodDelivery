@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="uz.androidmk.fooddelivery.ui.food.FoodActivity">
@@ -37,29 +38,56 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
                 android:layout_width="96dp"
                 android:layout_height="48dp"
                 android:layout_marginStart="4dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:src="@drawable/logo"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/main_cart"
+                android:text="Menu"
+                android:textColor="@color/background"
+                android:textSize="18sp"
+                android:gravity="center"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="@id/constraint_layout"
                 app:layout_constraintStart_toStartOf="@id/back_arrow"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageView
-                android:id="@+id/main_cart"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_marginEnd="8dp"
-                android:background="?selectableItemBackgroundBorderless"
-                android:clickable="true"
-                android:padding="12dp"
-                android:src="@drawable/ic_shopping_cart_black_24dp"
+            <android.support.constraint.ConstraintLayout
+                android:id="@+id/constraint_layout"
+                android:layout_width="46dp"
+                android:layout_height="wrap_content"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/main_cart"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginEnd="8dp"
+                    android:background="?selectableItemBackgroundBorderless"
+                    android:clickable="true"
+                    android:padding="12dp"
+                    android:onClick="onClickCart"
+                    android:src="@drawable/ic_shopping_cart_black_24dp" />
+
+                <uz.androidmk.fooddelivery.Utils.RobotoBold
+                    android:id="@+id/cart_badge_counter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/bc_spicy_yellow"
+                    android:gravity="center"
+                    android:paddingRight="5dp"
+                    android:paddingStart="5dp"
+                    android:textColor="@color/activeColorGreen"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="@id/main_cart"
+                    app:layout_constraintTop_toTopOf="@id/main_cart" />
+            </android.support.constraint.ConstraintLayout>
 
         </android.support.constraint.ConstraintLayout>
 
@@ -143,7 +171,7 @@
                 android:layout_weight="2"
                 android:onClick="onAddToCart"
                 android:background="@drawable/bc_btn_add_to_cart"
-                android:text="Add to cart"
+                android:text="@string/add_to_cart"
                 android:textStyle="bold" />
         </LinearLayout>
 

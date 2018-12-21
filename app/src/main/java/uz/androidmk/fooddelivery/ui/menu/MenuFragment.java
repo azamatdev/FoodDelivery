@@ -1,6 +1,8 @@
 package uz.androidmk.fooddelivery.ui.menu;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
@@ -8,10 +10,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -26,8 +30,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
 import uz.androidmk.fooddelivery.Utils.ParallaxPageTransformer;
-import uz.androidmk.fooddelivery.data.model.Banner;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import uz.androidmk.fooddelivery.data.db.model.Banner;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.di.component.ActivityComponent;
 import uz.androidmk.fooddelivery.ui.base.BaseFragment;
 import uz.androidmk.fooddelivery.ui.menu.adapter.HomeBannerAdapter;
@@ -58,6 +62,7 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
     @Inject
     MenuMvpPresenter<MenuMvpView> presenter;
 
+
     //For Banner auto flipping
     Timer timer;
     long DELAY_MS = 500;
@@ -81,7 +86,7 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_menu2, container, false);
 
         ActivityComponent activityComponent = getActivityComponent();
         if (activityComponent != null) {
@@ -106,8 +111,9 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
 //        adapter = new MenuAdapter(menuList);
 
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getBaseActivity(), 2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(getBaseActivity()));
         recyclerView.setFocusable(false);
+        recyclerView.setNestedScrollingEnabled(true);
         recyclerView.setAdapter(adapter);
 
         presenter.requestMenuList();
@@ -153,8 +159,6 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
 
 
         circlePageIndicator.setViewPager(viewPager);
-
-
     }
 
 
@@ -183,5 +187,6 @@ public class MenuFragment extends BaseFragment implements MenuMvpView {
         }
 
     }
+
 
 }

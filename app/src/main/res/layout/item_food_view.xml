@@ -25,6 +25,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
+            <ImageView
+                android:id="@+id/food_spicy"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bc_spicy_white"
+                android:padding="6dp"
+                android:visibility="gone"
+                android:src="@drawable/ic_chili"
+                app:layout_constraintBottom_toTopOf="@+id/food_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <uz.androidmk.fooddelivery.Utils.RobotoBold
                 android:id="@+id/food_price"
                 android:layout_width="72dp"

@@ -3,6 +3,8 @@ package uz.androidmk.fooddelivery.di.component;
 import dagger.Component;
 import uz.androidmk.fooddelivery.di.PerActivity;
 import uz.androidmk.fooddelivery.di.module.ActivityModule;
+import uz.androidmk.fooddelivery.ui.authUser.AuthActivity;
+import uz.androidmk.fooddelivery.ui.cart.CartActivity;
 import uz.androidmk.fooddelivery.ui.checkout.CheckoutActivity;
 import uz.androidmk.fooddelivery.ui.delivery.DeliveryFragment;
 import uz.androidmk.fooddelivery.ui.favourite.FavouriteFragment;
@@ -22,7 +24,11 @@ public interface ActivityComponent {
 
     void inject(FoodActivity foodActivity);
 
+    void inject(CartActivity cartActivity);
+
     void inject(CheckoutActivity checkoutActivity);
+
+    void inject(AuthActivity authActivity);
 
     void inject(MenuFragment menuFragment);
 

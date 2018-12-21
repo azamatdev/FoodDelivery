@@ -2,6 +2,7 @@ package uz.androidmk.fooddelivery.ui.base;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -12,6 +13,7 @@ import dagger.internal.DaggerCollections;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
 import uz.androidmk.fooddelivery.MvpApp;
 import uz.androidmk.fooddelivery.Utils.CommonUtils;
+import uz.androidmk.fooddelivery.Utils.LocaleManager;
 import uz.androidmk.fooddelivery.di.component.ActivityComponent;
 import uz.androidmk.fooddelivery.di.component.DaggerActivityComponent;
 import uz.androidmk.fooddelivery.di.module.ActivityModule;
@@ -29,16 +31,29 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
 
     private ActivityComponent mActivity;
 
+
+
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        setNewLocale("ru");
         mActivity = DaggerActivityComponent
                         .builder()
                         .activityModule(new ActivityModule(this))
                         .applicationComponent(((MvpApp)getApplication()).getComponent())
                         .build();
 
+
+    }
+
+
+
+    private boolean setNewLocale(String language) {
+        LocaleManager.setNewLocale(this, language);
+
+        return true;
     }
 
     public ActivityComponent getActivityComponent() {
@@ -62,7 +77,7 @@ public abstract class BaseActivity extends AppCompatActivity implements MvpView 
     //for calligraphy font class
     @Override
     protected void attachBaseContext(Context newBase) {
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(LocaleManager.setLocale(newBase));
     }
 
     @Override

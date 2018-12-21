@@ -2,5 +2,33 @@
     <string name="app_name">Loook</string>
 
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="hello_blank_fragment" translatable="false">Hello blank fragment</string>
+    <string name="title_activity_maps" translatable="false">Map</string>
+    <string name="cart">Cart</string>
+    <string name="subtotal">Subtotal:</string>
+    <string name="delivery_cost">Delivery cost:</string>
+    <string name="total_cost">Total cost:</string>
+    <string name="order">Order</string>
+    <string name="favourite">Favourite</string>
+    <string name="menu">Menu</string>
+    <string name="delivery">Delivery</string>
+    <string name="order_placed">Order placed</string>
+    <string name="preparing">Preparing</string>
+    <string name="dispatched">Dispatched</string>
+    <string name="delivered">Delivered</string>
+    <string name="add_to_cart">Add to cart</string>
+
+
+    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
+    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
+    <string name="menu_profile">Profile</string>
+    <string name="menu_menu">Menu</string>
+    <string name="menu_offers">Offers</string>
+    <string name="menu_cart">Cart</string>
+    <string name="menu_orders_history">Orders History</string>
+    <string name="menu_feedback" translatable="false">Feedback</string>
+    <string name="menu_notifications" translatable="false">Notifications</string>
+    <string name="menu_call_us" translatable="false">Call us</string>
+
+
 </resources>

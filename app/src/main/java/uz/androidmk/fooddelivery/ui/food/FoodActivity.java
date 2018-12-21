@@ -1,6 +1,8 @@
 package uz.androidmk.fooddelivery.ui.food;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -20,10 +22,11 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.data.model.Food;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import uz.androidmk.fooddelivery.Utils.RobotoBold;
+import uz.androidmk.fooddelivery.data.db.model.Food;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BaseActivity;
-import uz.androidmk.fooddelivery.ui.checkout.CheckoutActivity;
+import uz.androidmk.fooddelivery.ui.cart.CartActivity;
 import uz.androidmk.fooddelivery.ui.food.Adapter.CategoryAdapter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.FoodAdapter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.FoodSelectListener;
@@ -45,6 +48,9 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
     @BindView(R.id.food_add_to_cart)
     Button addToCart;
 
+    @BindView(R.id.cart_badge_counter)
+    RobotoBold badge_counter;
+
     @Inject
     FoodAdapter foodAdapter;
 
@@ -53,6 +59,7 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
 
     @Inject
     FoodMvpPresenter<FoodMvpView> presenter;
+
 
     ArrayList<Food> listOfFoods;
 
@@ -65,6 +72,13 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
     int selectedPage;
 
     boolean isVisible;
+
+    private ArrayList<Food> selectedFoodsList;
+
+    private SharedPreferences sharedPreferences;
+
+    SharedPreferences.Editor editor;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,7 +86,11 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
 
         getActivityComponent().inject(this);
 //        presenter = new FoodPresenter<>();
+        sharedPreferences = this.getSharedPreferences("Checks", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
         selectedFoods = new HashMap<>();
+        selectedFoodsList = new ArrayList<>();
         setUnbinder(ButterKnife.bind(this));
         presenter.onAttach(this);
         presenter.setInstanceFirebase();
@@ -85,7 +103,7 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
 //        listOfFoods = new ArrayList<>();
 //        foodAdapter = new FoodAdapter(listOfFoods);
         foodAdapter.setFoodSelectListener(this);
-
+        foodAdapter.setSharedPreference(sharedPreferences);
         foodRecyclerView.setLayoutManager(new GridLayoutManager(this, 2, LinearLayoutManager.VERTICAL, false));
         foodRecyclerView.setHasFixedSize(true);
         foodRecyclerView.setAdapter(foodAdapter);
@@ -110,20 +128,21 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
         btn_expand_collapse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(isVisible) {
+                if (isVisible) {
                     foodSelectRecycle.setVisibility(View.GONE);
                     foodSelectRecycle.animate().alpha(1.0f);
                     btn_expand_collapse.setImageResource(R.drawable.ic_arrow_up);
                     isVisible = false;
-                }
-                else {
+                } else {
                     foodSelectRecycle.setVisibility(View.VISIBLE);
                     foodSelectRecycle.startAnimation(slideUp);
                     btn_expand_collapse.setImageResource(R.drawable.ic_arrow_down);
                     isVisible = true;
                 }
-             }
+            }
         });
+
+        updateBadgeCounter();
 
     }
 
@@ -156,27 +175,53 @@ public class FoodActivity extends BaseActivity implements FoodMvpView, FoodSelec
 
     //From food select listener
     @Override
-    public void onFoodSelected(int position) {
-//        selectedFoods.put(listOfFoods.get(position).getCategoryId(), listOfFoods);
+    public void onFoodSelected(Food food, int type) {
+        if (type == 1) {
+//            selectedFoodsList.add(foo d);
+            editor.putBoolean(food.getKey(), true);
+            editor.apply();
+            updateBadgeCounter();
+            presenter.addSelectedFood(food);
+        }
+        if (type == 0) {
+//            selectedFoodsList.remove(food);
+            editor.remove(food.getKey());
+            editor.apply();
+            updateBadgeCounter();
+            presenter.removeSelectedFood(food.getKey());
+        }
     }
 
     @Override
     public void onCategorySelected(int position) {
-        if(selectedFoods.containsKey(Integer.toString(position))) {
+        if (selectedFoods.containsKey(Integer.toString(position))) {
             Log.d("ConditionC", "adapter");
             foodAdapter.addItems(selectedFoods.get(Integer.toString(position)));
-        }else {
+        } else {
             Log.d("ConditionC", "presenter");
             presenter.requestSpecificFoodList(Integer.toString(position));
         }
     }
 
-    public void onAddToCart(View view){
-        Intent checkout = new Intent(FoodActivity.this, CheckoutActivity.class);
+    public void onAddToCart(View view) {
+        Intent checkout = new Intent(FoodActivity.this, CartActivity.class);
         startActivity(checkout);
     }
 
+    @Override
+    protected void onResume() {
+        foodAdapter.notifyDataSetChanged();
+        updateBadgeCounter();
+        super.onResume();
+    }
 
+    public void updateBadgeCounter() {
+        String numberOfItems = Integer.toString(sharedPreferences.getAll().size());
+        badge_counter.setText(numberOfItems);
+    }
 
-
+    public void onClickCart(View view){
+        Intent cartActivity = new Intent(FoodActivity.this, CartActivity.class);
+        startActivity(cartActivity);
+    }
 }

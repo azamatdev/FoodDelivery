@@ -2,14 +2,14 @@
 <resources>
     <color name="colorPrimary">#E31E25</color>
     <color name="colorPrimaryDark">#E31E25</color>
-    <color name="colorAccent">#035017</color>
+    <color name="colorAccent">#E31E25</color>
 
-    <color name="white">#ffffff</color>
+        <color name="white">#ffffff</color>
 
-    <color name="background">#f6f9f8</color>
-    <color name="textMainColor">#333333</color>
-    <color name="textPlainColor">#686868</color>
-    <color name="textLightColor">#B3B3B3</color>
+        <color name="background">#f6f9f8</color>
+        <color name="textMainColor">#333333</color>
+        <color name="textPlainColor">#686868</color>
+        <color name="textLightColor">#B3B3B3</color>
 
     <color name="transparentGrey">#80424242</color>
     <color name="activeColorGreen">#044F16</color>
@@ -22,6 +22,28 @@
     <color name="additionalColorLightYellow">#FFD300</color>
     <color name="yellow">#FFDD00</color>
     <color name="warningColorRed">#BC0918</color>
-    <color name="warningColorDarkRed">#C20C00</color>
+    <color name="ColorDarkRed">#C20C00</color>
+    <color name="ColorLightRed">#FFcdd2</color>
+
+
+
+
+    <!--Additional-->
+    <color name="background1">#FCFDFE</color>
+    <color name="background2">#aac0dd</color>
+    <color name="blueSky">#c8d2da</color>
+    <color name="darkBlueSky">#528AC7</color>
+    <color name="blueSkyLight">#e5efff</color>
+    <color name="blueSkyBackground">#d6dbe4</color>
+    <color name="textColor1">#8f9298</color>
+
+    <color name="toolbar_transparency">#cfcfcf</color>
+    <color name="toolbar_name">#8b8b8b</color>
+
+
+    <color name="grey_100">#F5F5F5</color>
+    <color name="grey_300">#E0E0E0</color>
+    <color name="grey_500">#9E9E9E</color>
+
 
 </resources>

@@ -2,6 +2,9 @@ package uz.androidmk.fooddelivery.ui.base;
 
 import javax.inject.Inject;
 
+import io.reactivex.disposables.CompositeDisposable;
+import uz.androidmk.fooddelivery.data.DataManager;
+
 /**
  * Created by Azamat on 8/8/2018.
  */
@@ -11,9 +14,21 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
 
     private V mMvpView;
 
-    @Inject
-    public BasePresenter(){
+    private DataManager mDataManager;
 
+    private CompositeDisposable mCompositeDisposable;
+
+    @Inject
+    public BasePresenter(DataManager dataManager, CompositeDisposable compositeDisposable){
+        mDataManager = dataManager;
+        mCompositeDisposable = compositeDisposable;
+    }
+    public CompositeDisposable getCompositeDisposable() {
+        return mCompositeDisposable;
+    }
+
+    public DataManager getDataManager() {
+        return mDataManager;
     }
 
     @Override
@@ -25,6 +40,7 @@ public class BasePresenter<V extends MvpView> implements MvpPresenter<V> {
     public void onDetach() {
         if(mMvpView != null)
             mMvpView = null;
+        mCompositeDisposable.dispose();
     }
 
     // this method is the most important method in basePresenter

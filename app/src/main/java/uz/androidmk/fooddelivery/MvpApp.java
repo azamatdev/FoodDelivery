@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig;
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import uz.androidmk.fooddelivery.Utils.LocaleManager;
 import uz.androidmk.fooddelivery.di.component.ApplicationComponent;
 import uz.androidmk.fooddelivery.di.component.DaggerApplicationComponent;
 import uz.androidmk.fooddelivery.di.module.ApplicationModule;
@@ -23,9 +24,12 @@ public class MvpApp extends Application {
     CalligraphyConfig calligraphyConfig;
 
     private ApplicationComponent mApplicationComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
+
+        LocaleManager.setLocale(this);
 
         mApplicationComponent = DaggerApplicationComponent
                                 .builder()
@@ -33,14 +37,16 @@ public class MvpApp extends Application {
                                 .build();
 
         FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        CalligraphyConfig.initDefault(new CalligraphyConfig.Builder()
-                .setDefaultFontPath("Roboto-Medium.ttf")
-                .setFontAttrId(R.attr.fontPath)
-                .build()
-        );
+        CalligraphyConfig.initDefault(calligraphyConfig);
     }
 
     public ApplicationComponent getComponent(){
         return mApplicationComponent;
     }
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(LocaleManager.setLocale(base));
+    }
+
 }

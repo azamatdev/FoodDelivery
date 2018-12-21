@@ -49,6 +49,50 @@
           "status": 2
         }
       }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:77875962153:android:fe91708e8dd4f4d4",
+        "android_client_info": {
+          "package_name": "uz.androidmk.fooddeliveryadmin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "77875962153-ib3c44baar23s8g0bbdthv37qse28cbl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "uz.androidmk.fooddeliveryadmin",
+            "certificate_hash": "247894db7a56b425234ceb53172500c23c938f24"
+          }
+        },
+        {
+          "client_id": "77875962153-shv0mhgqrggmn377i4g6tpf9okojh8nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAAQOmDe3Y8AYGgqTcPXPvg1d72s3aSW4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "77875962153-shv0mhgqrggmn377i4g6tpf9okojh8nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
     }
   ],
   "configuration_version": "1"

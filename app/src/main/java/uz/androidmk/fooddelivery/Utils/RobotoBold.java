@@ -33,7 +33,7 @@ public class RobotoBold extends TextView {
 
     private void init(){
         if(!isInEditMode()){
-            Typeface typeface = Typeface.createFromAsset(getContext().getAssets(),"Roboto-Bold.ttf");
+            Typeface typeface = Typeface.createFromAsset(getContext().getAssets(),"blogger-sans.bold.ttf");
             setTypeface(typeface);
         }
     }

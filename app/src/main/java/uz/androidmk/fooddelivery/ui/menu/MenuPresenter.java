@@ -13,8 +13,10 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
-import uz.androidmk.fooddelivery.data.model.Banner;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import io.reactivex.disposables.CompositeDisposable;
+import uz.androidmk.fooddelivery.data.DataManager;
+import uz.androidmk.fooddelivery.data.db.model.Banner;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.ui.base.BasePresenter;
 
 /**
@@ -32,8 +34,8 @@ public class MenuPresenter<V extends MenuMvpView> extends BasePresenter<V>
     private StorageReference mStorageRef;
 
     @Inject
-    public MenuPresenter(){
-
+    public MenuPresenter(DataManager dataManager, CompositeDisposable compositeDisposable){
+        super(dataManager, compositeDisposable);
     }
 
     public void setInstanceFirebase(){

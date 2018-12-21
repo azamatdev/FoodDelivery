@@ -7,15 +7,21 @@ import java.util.ArrayList;
 
 import dagger.Module;
 import dagger.Provides;
-import uz.androidmk.fooddelivery.data.model.Food;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import io.reactivex.disposables.CompositeDisposable;
+import uz.androidmk.fooddelivery.data.db.model.Food;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.di.ActivityContext;
 import uz.androidmk.fooddelivery.di.PerActivity;
-import uz.androidmk.fooddelivery.ui.checkout.CheckoutActivity;
+import uz.androidmk.fooddelivery.ui.cart.CartMvpPresenter;
+import uz.androidmk.fooddelivery.ui.cart.CartMvpView;
+import uz.androidmk.fooddelivery.ui.cart.CartPresenter;
+import uz.androidmk.fooddelivery.ui.cart.adapter.CartAdapter;
 import uz.androidmk.fooddelivery.ui.checkout.CheckoutMvpPresenter;
 import uz.androidmk.fooddelivery.ui.checkout.CheckoutMvpView;
 import uz.androidmk.fooddelivery.ui.checkout.CheckoutPresenter;
-import uz.androidmk.fooddelivery.ui.checkout.adapter.CheckoutAdapter;
+import uz.androidmk.fooddelivery.ui.delivery.DeliveryMvpPresenter;
+import uz.androidmk.fooddelivery.ui.delivery.DeliveryMvpView;
+import uz.androidmk.fooddelivery.ui.delivery.DeliveryPresenter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.CategoryAdapter;
 import uz.androidmk.fooddelivery.ui.food.Adapter.FoodAdapter;
 import uz.androidmk.fooddelivery.ui.food.FoodMvpPresenter;
@@ -55,6 +61,12 @@ public class ActivityModule {
         return mActivity;
     }
 
+
+    //For RxJava extensions
+    @Provides
+    CompositeDisposable provideCompositeDisposable(){
+        return new CompositeDisposable();
+    }
     //presenters
     //1. Inject the presenter's constructor, so that the dagger will get it loaded
     // into its own dependency container
@@ -80,9 +92,23 @@ public class ActivityModule {
 
     @Provides
     @PerActivity
+    CartMvpPresenter<CartMvpView> provideCartPresenter(CartPresenter<CartMvpView> cartPresenter){
+        return cartPresenter;
+    }
+
+    @Provides
+    @PerActivity
     CheckoutMvpPresenter<CheckoutMvpView> provideCheckoutPresenter(CheckoutPresenter<CheckoutMvpView> checkoutPresenter){
         return checkoutPresenter;
     }
+
+    @Provides
+    @PerActivity
+    DeliveryMvpPresenter<DeliveryMvpView> provideDeliveryPresenter(DeliveryPresenter<DeliveryMvpView> deliveryPresenter){
+        return deliveryPresenter;
+    }
+
+
 
     ///Adapters
     @Provides
@@ -106,8 +132,8 @@ public class ActivityModule {
     }
 
     @Provides
-    CheckoutAdapter provideCheckoutAdapter(){
-        return new CheckoutAdapter(new ArrayList<Food>());
+    CartAdapter provideCheckoutAdapter(){
+        return new CartAdapter(new ArrayList<Food>());
     }
 
 

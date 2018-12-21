@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fitsSystemWindows="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="uz.androidmk.fooddelivery.ui.cart.CartActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/cart_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cart_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="4dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="12dp"
+                android:onClick="onBackBtn"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="@string/cart"
+                android:textColor="@color/background"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/checkout_recycler_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="56dp"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/checkout_bottom_linear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cart_toolbar"
+        tools:listitem="@layout/item_cart_view" />
+
+
+    <LinearLayout
+        android:id="@+id/checkout_bottom_linear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:orientation="vertical"
+        android:paddingBottom="4dp"
+        android:paddingEnd="4dp"
+        android:paddingStart="8dp"
+        android:paddingTop="4dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:layout_marginEnd="8dp">
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/subtotal"
+                android:layout_weight="3"
+                style="@style/TextAppearance"
+                />
+
+            <TextView
+                android:id="@+id/checkout_subtotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="1254,456"
+                android:paddingRight="4dp"
+                android:layout_weight="4"
+                android:gravity="end"
+                style="@style/TextAppearance"
+                />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=" so'm"
+                android:gravity="end"
+                style="@style/TextAppearance"
+                />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:orientation="horizontal"
+            android:layout_marginRight="8dp">
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="wrap_content"
+                android:text="@string/delivery_cost"
+                style="@style/TextAppearance"
+                />
+
+            <TextView
+                android:id="@+id/checkout_delivery_amount"
+                android:layout_width="0dp"
+                android:paddingRight="4dp"
+                android:layout_weight="4"
+                android:layout_height="wrap_content"
+                android:text="1254,456"
+                android:gravity="end"
+                style="@style/TextAppearance" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:text=" so'm"
+                android:gravity="end"
+                style="@style/TextAppearance" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:orientation="horizontal">
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@string/total_cost"
+                android:layout_weight="3"
+                style="@style/TextAppearance" />
+
+            <TextView
+                android:id="@+id/checkout_total_cost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="1254,456"
+                android:layout_weight="4"
+                android:gravity="end"
+                android:paddingRight="4dp"
+                style="@style/TextAppearance" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text=" so'm"
+                android:layout_weight="1"
+                android:gravity="end"
+                style="@style/TextAppearance"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/cart_btn_order"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:onClick="onClickCartOrder"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/bc_btn_add_to_cart"
+            android:text="@string/order"
+            android:textStyle="bold" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>

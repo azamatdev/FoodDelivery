@@ -1,0 +1,44 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <group android:id="@+id/menu_group_1"
+        >
+        <item
+            android:id="@+id/menu_profile"
+            android:icon="@drawable/ic_menu_profile_white"
+            android:title="@string/menu_profile" />
+        <item
+            android:id="@+id/menu_menu"
+            android:icon="@drawable/ic_fast_food_menu"
+            android:title="@string/menu_menu" />
+        <item
+            android:id="@+id/menu_offers"
+            android:icon="@drawable/ic_menu_offers"
+            android:title="@string/menu_offers" />
+        <item
+            android:id="@+id/menu_cart"
+            android:icon="@drawable/ic_menu_cart_white"
+            android:title="@string/menu_cart" />
+        <item
+            android:id="@+id/menu_orders_history"
+            android:icon="@drawable/ic_menu_history"
+            android:title="@string/menu_orders_history" />
+        <item
+            android:id="@+id/menu_feedback"
+            android:icon="@drawable/ic_menu_feedback"
+            android:title="@string/menu_feedback" />
+
+        <item
+            android:id="@+id/menu_notifications"
+            android:icon="@drawable/ic_menu_notification"
+            android:title="@string/menu_notifications" />
+
+        <item
+            android:id="@+id/menu_call_us"
+            android:icon="@drawable/ic_menu_phone"
+            android:title="@string/menu_call_us" />
+
+    </group>
+
+</menu>

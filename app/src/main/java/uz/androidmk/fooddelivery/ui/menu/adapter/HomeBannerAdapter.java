@@ -13,11 +13,8 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.data.model.Banner;
-import uz.androidmk.fooddelivery.di.ActivityContext;
+import uz.androidmk.fooddelivery.data.db.model.Banner;
 
 /**
  * Created by Azamat on 8/7/2018.

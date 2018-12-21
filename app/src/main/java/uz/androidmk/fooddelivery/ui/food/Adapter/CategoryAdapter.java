@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 import butterknife.ButterKnife;
 import uz.androidmk.fooddelivery.R;
-import uz.androidmk.fooddelivery.data.model.Menu;
+import uz.androidmk.fooddelivery.data.db.model.Menu;
 import uz.androidmk.fooddelivery.ui.food.FoodMvpView;
 
 /**

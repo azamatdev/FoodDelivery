@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="uz.androidmk.fooddelivery">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".MvpApp"
         android:allowBackup="true"
@@ -10,15 +15,34 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.main.MainActivity">
+        <activity
+            android:name=".ui.main.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="androvid.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.food.FoodActivity" />
+        <activity
+            android:name=".ui.food.FoodActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.cart.CartActivity"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyAWwCThxezCnrRHUw0SMRFZwhpCFlE0Zqw" />
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+
+        <activity
+            android:name=".ui.checkout.MapsActivity"
+            android:label="@string/title_activity_maps" />
         <activity android:name=".ui.checkout.CheckoutActivity" />
+        <activity android:name=".ui.authUser.AuthActivity"></activity>
     </application>
 
 </manifest>

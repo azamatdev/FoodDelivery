@@ -4,10 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="150dp"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="4dp"
-    android:layout_marginBottom="4dp">
+    >
 
     <!--Margin bottom was 30-->
     <android.support.v7.widget.CardView
@@ -15,37 +12,34 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:cardBackgroundColor="@color/background"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="6dp"
         app:cardPreventCornerOverlap="true"
+        app:contentPaddingLeft="-3dp"
+        app:contentPaddingRight="-3dp"
+        app:contentPaddingTop="-3dp"
+        app:contentPaddingBottom="-3dp"
+        app:cardUseCompatPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.joooonho.SelectableRoundedImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <ImageView
             android:id="@+id/category_image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
+            />
 
-            app:sriv_left_top_corner_radius="8dip"
-            app:sriv_right_top_corner_radius="8dip"
-            app:sriv_left_bottom_corner_radius="8dip"
-            app:sriv_right_bottom_corner_radius="8dip"
-            android:src="@drawable/sandwiches" />
-
-        <TextView
+        <uz.androidmk.fooddelivery.Utils.RobotoBold
             android:id="@+id/category_title"
             android:layout_width="match_parent"
             android:layout_height="25dp"
-            android:background="@drawable/bc_menu_title2"
-            android:textAlignment="center"
+            android:background="@drawable/bc_menu_title1"
             android:text="Sandwiches"
+            android:paddingStart="12dp"
             android:textColor="@color/background"
             android:textStyle="bold"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:paddingTop="2dp"
             android:paddingBottom="3dp"
             android:layout_gravity="bottom"
