@@ -19,6 +19,9 @@ android {
     }
     productFlavors {
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/uz/androidmk/fooddelivery'
+    }
 }
 
 project.ext {
@@ -77,15 +80,15 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:16.0.3'
 
     //google maps
-    compile 'com.google.android.gms:play-services-maps:15.0.1'
-    compile 'com.google.android.gms:play-services-location:15.0.1'
-    compile "com.google.android.gms:play-services-places:15.0.1"
+    implementation 'com.google.android.gms:play-services-maps:15.0.1'
+    implementation 'com.google.android.gms:play-services-location:15.0.1'
+    implementation "com.google.android.gms:play-services-places:15.0.1"
 
     // font
     implementation "uk.co.chrisjenx:calligraphy:$project.calligraphyVersion"
 
     //viewpager indicator
-    compile 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
+    implementation 'fr.avianey.com.viewpagerindicator:library:2.4.1.1@aar'
 
     // image view
     implementation 'de.hdodenhof:circleimageview:2.2.0'
