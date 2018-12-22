@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:mask="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fitsSystemWindows="true"
+    android:layout_height="match_parent"
+    tools:context="uz.androidmk.fooddelivery.ui.checkout.CheckoutActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/cart_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:elevation="4dp"
+        app:contentInsetLeft="0dp"
+        app:contentInsetStart="0dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/cart_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="4dp"
+                android:background="?selectableItemBackgroundBorderless"
+                android:clickable="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:id="@+id/toolbar_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Registration"
+                android:textColor="@color/background"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+        android:id="@+id/img_logo"
+        android:layout_width="match_parent"
+        android:layout_height="109dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo_white_transparent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cart_toolbar" />
+
+    <LinearLayout
+        android:id="@+id/checkout_lnr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="28dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/img_logo">
+
+
+
+        <LinearLayout
+            android:id="@+id/checkout_phone_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bc_form_linear"
+            android:orientation="horizontal"
+            android:padding="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/checkout_name_linear">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_phone_rounded" />
+
+            <!--<EditText-->
+            <!--android:id="@+id/checkout_edtxt_phone"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginStart="8dp"-->
+            <!--android:digits="0123456789+"-->
+            <!--android:background="@android:color/transparent"-->
+            <!--android:hint="Phone number"-->
+            <!--android:textColor="@color/textMainColor"-->
+            <!--android:textSize="16sp" />-->
+
+            <br.com.sapereaude.maskedEditText.MaskedEditText
+                android:id="@+id/reg_edtxt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:hint="971234567"
+                android:inputType="phone"
+                android:textColorHint="@color/textLightColor"
+                android:imeOptions="actionNext"
+                android:windowSoftInputMode="stateVisible|adjustResize"
+                android:textSize="16sp"
+                app:keep_hint="true"
+                mask:allowed_chars="1234567890"
+                mask:mask="+998(##) ### ## ##"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/checkout_location_linear"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:background="@drawable/bc_form_linear"
+            android:orientation="horizontal"
+            android:padding="8dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:src="@drawable/ic_sms" />
+
+            <EditText
+                android:id="@+id/reg_sms_code"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:hint="sms code"
+                android:singleLine="true"
+                android:textColorHint="@color/textLightColor"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+
+
+    <!--<uz.androidmk.fooddelivery.Utils.RobotoBold-->
+    <!--android:id="@+id/checkout_txt_type"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:text="Delivery type"-->
+    <!--android:textColor="@color/textMainColor"-->
+    <!--android:textSize="16sp"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/checkout_phone_linear"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/checkout_phone_linear" />-->
+
+    <!--<RadioGroup-->
+    <!--android:id="@+id/checkout_radioGroup"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginEnd="8dp"-->
+    <!--android:layout_marginStart="16dp"-->
+    <!--android:layout_marginTop="4dp"-->
+    <!--app:layout_constraintStart_toStartOf="@+id/checkout_txt_type"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/checkout_txt_type">-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/checkout_rd_urgent"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:checked="true"-->
+    <!--android:text="Urgent"-->
+    <!--android:textColor="@color/textMainColor" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/checkout_rd_atTheTime"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="At the time"-->
+    <!--android:textColor="@color/textMainColor" />-->
+
+    <!--<RadioButton-->
+    <!--android:id="@+id/checkout_rd_pickup"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:text="Pick up"-->
+    <!--android:textColor="@color/textMainColor" />-->
+    <!--</RadioGroup>-->
+
+    <!--<LinearLayout-->
+    <!--android:id="@+id/checkout_linear_time"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginBottom="8dp"-->
+    <!--android:layout_marginStart="76dp"-->
+    <!--android:layout_marginTop="8dp"-->
+    <!--android:padding="8dp"-->
+    <!--android:visibility="gone"-->
+    <!--app:layout_constraintBottom_toBottomOf="@+id/checkout_radioGroup"-->
+    <!--app:layout_constraintStart_toEndOf="@+id/checkout_radioGroup"-->
+    <!--app:layout_constraintTop_toTopOf="@+id/checkout_radioGroup">-->
+
+    <!--<ImageView-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:src="@drawable/ic_alarm_clock" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/checkout_time"-->
+    <!--android:layout_width="wrap_content"-->
+
+
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_marginStart="8dp"-->
+    <!--android:text="14:15"-->
+    <!--android:textSize="18sp" />-->
+    <!--</LinearLayout>-->
+
+
+    <!--  <Button
+          android:id="@+id/checkout_btn_order"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginStart="8dp"
+          android:background="@drawable/bc_btn_add_to_cart"
+          android:text="Order"
+          android:textStyle="bold"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          app:layout_constraintStart_toStartOf="parent" />-->
+
+
+    <RelativeLayout
+        android:id="@+id/reg_btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/bc_btn_add_to_cart"
+        android:padding="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <uz.androidmk.fooddelivery.Utils.RobotoBold
+            android:id="@+id/txt_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="Register"
+            android:textAllCaps="true"
+            android:textColor="@color/textMainColor"
+            android:textSize="16sp" />
+
+        <ProgressBar
+            android:visibility="gone"
+            android:id="@+id/progressBar"
+            android:layout_centerInParent="true"
+            android:layout_width="24dp"
+            android:layout_height="24dp" />
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

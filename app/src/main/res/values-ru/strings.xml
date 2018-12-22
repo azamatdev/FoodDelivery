@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Loook</string>
+    <string name="cart">Корзина</string>
+    <string name="subtotal">Промежуточный итог:</string>
+    <string name="delivery_cost">Стоимость доставки:</string>
+    <string name="total_cost">Общая стоимость:</string>
+    <string name="order">Заказ</string>
+    <string name="favourite">Любимый</string>
+    <string name="menu">"Меню "</string>
+    <string name="delivery">Доставка</string>
+    <string name="order_placed">Заказ размещен</string>
+    <string name="preparing">Подготовка</string>
+    <string name="dispatched">Отправляется</string>
+    <string name="delivered">Доставлен</string>
+    <string name="add_to_cart">Добавить в корзину</string>
+    <string name="menu_profile">Профиль</string>
+    <string name="menu_menu">Меню</string>
+    <string name="menu_offers">Предложения</string>
+    <string name="menu_cart">Корзинка</string>
+    <string name="menu_orders_history">История заказов</string>
+</resources>

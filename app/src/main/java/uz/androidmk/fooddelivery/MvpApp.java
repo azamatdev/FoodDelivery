@@ -2,6 +2,7 @@ package uz.androidmk.fooddelivery;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,7 +19,7 @@ import uz.androidmk.fooddelivery.di.module.ApplicationModule;
  * Created by Azamat on 8/7/2018.
  */
 
-public class MvpApp extends Application {
+public class MvpApp extends MultiDexApplication {
 
     @Inject
     CalligraphyConfig calligraphyConfig;

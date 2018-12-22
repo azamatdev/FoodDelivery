@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="4dp"
+    app:cardBackgroundColor="@color/background"
+    app:cardElevation="3dp"
+    app:cardPreventCornerOverlap="false">
+
+    <ImageView
+        android:id="@+id/checkout_food_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="start|top"
+        android:src="@drawable/ic_shopping_cart_delete" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingTop="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_weight="3"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_gravity="center_horizontal"
+                />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:id="@+id/checkout_food_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chicken longer"
+                android:textColor="@color/textMainColor"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/checkout_food_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:textSize="16sp"
+                android:text="8,600"
+                android:textColor="@color/textPlainColor" />
+        </LinearLayout>
+        <!--<RelativeLayout-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:layout_weight="2">-->
+        <!---->
+        <!--</RelativeLayout>-->
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginStart="4dp"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <uz.androidmk.fooddelivery.Utils.RobotoBold
+                android:id="@+id/total_food_price"
+                android:layout_width="72dp"
+                android:layout_height="30dp"
+                android:layout_gravity="end|top"
+                android:background="@drawable/bc_price_yellow"
+                android:gravity="center"
+                android:paddingStart="4dp"
+                android:text="11,400"
+                android:textSize="16sp"
+                android:textColor="@color/activeColorDarkGreen"
+                android:textStyle="bold"
+                 />
+
+            <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+                android:id="@+id/elegant_number"
+                android:layout_width="80dp"
+                android:layout_height="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_gravity="end"
+                app:backGroundColor="@color/greenLight2"
+                app:initialNumber="1" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>
